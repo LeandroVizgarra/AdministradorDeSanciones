@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class PersonaMapper {
     private final SancionMapper sancionMapper;
@@ -30,6 +33,14 @@ public class PersonaMapper {
         persona.setPuesto(dto.getPuesto());
         return persona;
     }
+    public List<PersonaDTO> personaEntityList2DTOList(List<Persona> personas){
 
+        List<PersonaDTO> personaDTOS = new ArrayList<>();
+
+        for(Persona persona : personas){
+            personaDTOS.add(this.personaEntity2DTO(persona));
+        }
+        return personaDTOS;
+    }
 
 }

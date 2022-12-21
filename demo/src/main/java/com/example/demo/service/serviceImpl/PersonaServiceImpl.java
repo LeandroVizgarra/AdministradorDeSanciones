@@ -10,6 +10,8 @@ import com.example.demo.service.SancionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PersonaServiceImpl implements PersonaService {
     private final PersonaRepository personaRepository;
@@ -58,5 +60,10 @@ public class PersonaServiceImpl implements PersonaService {
         Persona personaUpdate = personaRepository.save(persona);
 
         return personaMapper.personaEntity2DTO(personaUpdate);
+    }
+
+    public List<PersonaDTO> obtenerListadoDePersonas(){
+        List<Persona> personas = personaRepository.findAll();
+        return personaMapper.personaEntityList2DTOList(personas);
     }
 }

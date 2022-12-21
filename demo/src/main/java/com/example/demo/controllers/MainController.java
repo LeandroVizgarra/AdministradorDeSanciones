@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/main")
 public class MainController {
@@ -18,6 +20,11 @@ public class MainController {
     public MainController(PersonaService personaService, SancionService sancionService) {
         this.personaService = personaService;
         this.sancionService = sancionService;
+    }
+    @GetMapping("/personas")
+    public ResponseEntity<List<PersonaDTO>> obtenerListadoPersonas(){
+        List<PersonaDTO> personas = personaService.obtenerListadoDePersonas();
+        return new ResponseEntity<>(personas,HttpStatus.OK);
     }
 
     @GetMapping("/persona/{id}")

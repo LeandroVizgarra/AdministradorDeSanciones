@@ -8,6 +8,7 @@ import com.example.demo.repository.SancionRepository;
 import com.example.demo.service.PersonaService;
 import com.example.demo.service.SancionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class SancionesServiceImpl implements SancionService {
     private final SancionRepository sancionRepository;
     private final SancionMapper sancionMapper;
     private final PersonaService personaService;
+    @Lazy
     @Autowired
     public SancionesServiceImpl(SancionRepository sancionRepository, SancionMapper sancionMapper, PersonaService personaService) {
         this.sancionRepository = sancionRepository;

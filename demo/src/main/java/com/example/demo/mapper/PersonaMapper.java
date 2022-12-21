@@ -3,12 +3,18 @@ package com.example.demo.mapper;
 import com.example.demo.dtos.PersonaDTO;
 import com.example.demo.entities.Persona;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PersonaMapper {
+    private final SancionMapper sancionMapper;
+    @Lazy
     @Autowired
-    private SancionMapper sancionMapper;
+
+    public PersonaMapper(SancionMapper sancionMapper) {
+        this.sancionMapper = sancionMapper;
+    }
 
     public PersonaDTO personaEntity2DTO(Persona persona){
         PersonaDTO personaDTO = new PersonaDTO();
@@ -24,4 +30,6 @@ public class PersonaMapper {
         persona.setPuesto(dto.getPuesto());
         return persona;
     }
+
+
 }

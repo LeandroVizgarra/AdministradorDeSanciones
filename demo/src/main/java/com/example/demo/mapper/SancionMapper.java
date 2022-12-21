@@ -12,7 +12,7 @@ import java.util.List;
 @Component
 public class SancionMapper {
     private final PersonaService personaService;
-
+    @Autowired
     public SancionMapper(PersonaService personaService) {
         this.personaService = personaService;
     }

@@ -14,6 +14,6 @@ public class Sancion {
     private String descripcion;
 
     @OneToOne
-    private Person person;
+    private Persona persona;
 
 }

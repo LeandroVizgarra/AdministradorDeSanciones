@@ -5,10 +5,11 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Data
-public class Person {
+public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -24,4 +25,15 @@ public class Person {
             inverseJoinColumns = @JoinColumn(name="id_person")
     )
     private List<Sancion> listaSanciones = new ArrayList<>();
+
+    public void agregarSancion(Sancion sancion){
+        this.listaSanciones.add(sancion);
+    }
+
+    public void quitarSancion(Long sancionId){
+        this.listaSanciones.stream().filter(
+                        itemMap -> Objects.equals(itemMap.getId(), sancionId))
+                        .findFirst()
+                        .ifPresent(item -> this.listaSanciones.remove(item));
+    }
 }
